@@ -11,8 +11,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import net.jhorstmann.i18n.I18N;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -31,6 +33,8 @@ public class Main extends JFrame {
     private JMenu menuFile;
     JMenuItem menuItemExit;
 
+    protected static Main main;
+
     public static void main(String[] args) {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -40,23 +44,27 @@ public class Main extends JFrame {
                 }
             }
         } catch (Exception e) {
-            System.out.println(I18N.tr("[ERROR] Unsupported Look And Feel."));
+            System.out.println("[ERROR] Unsupported Look And Feel.");
         }
-        
+
         File sanUSBDir = new File(SANUSB_DIR);
         if (!sanUSBDir.exists() || !sanUSBDir.isDirectory()) {
-            JOptionPane.showMessageDialog(null, String.format(
-                    "Diretório '%s' não encontrado. Verifique se o programa "
-                            + "SanUSB está instalado corretamente.", SANUSB_DIR));
+            String message = I18N.tr("Directory '%s' not found. Please, check if the program "
+                    + "SanUSB is installed correctly.", SANUSB_DIR);
+            JOptionPane.showMessageDialog(null, message);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Main main = new Main();
-                main.setVisible(true);
+                createInstance();
             }
         });
+    }
+
+    public static void createInstance() {
+        main = new Main();
+        main.setVisible(true);
     }
 
     public Main() {
@@ -119,12 +127,7 @@ public class Main extends JFrame {
                 new Thread() {
                     @Override
                     public void run() {
-                        String texto = "Grave no microcontrolador, somente uma vez, com qualquer gravador para PIC,\n"
-                                + " o Gerenciador.hex em anexo que irá gerenciar as gravações (descargas) de \n"
-                                + "programas.hex pela interface USB. Mais detalhes no tutorial.";
-                        JOptionPane.showMessageDialog(null, texto, "Informação", JOptionPane.INFORMATION_MESSAGE);
-
-                        String[] comando = {"firefox", urlGerenciador};
+                        String[] comando = { "firefox", urlGerenciador };
                         janela.startComando(comando);
                     }
                 }.start();
@@ -136,12 +139,15 @@ public class Main extends JFrame {
         menuItemAbout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "       SanUSB desenvolvido por: Sandro Jucá\n"
-                        + "             sandro_juca@yahoo.com.br\n"
-                        + "              Web : tinyurl.com/SanUSB\n"
-                        + "        -------------------------------------------------\n"
-                        + "Interface Grafica desenvolvida por: Rômulo Lopes\n"
-                        + "             frutuoso.romulo@gmail.com\n");
+                final StringBuilder message = new StringBuilder();
+                message.append("SanUSB desenvolvido por: Sandro Jucá\n");
+                message.append("sandro_juca@yahoo.com.br\n");
+                message.append("Web : tinyurl.com/SanUSB\n");
+                message.append("-------------------------------------------------\n");
+                message.append("sanusb-java-gui desenvolvido por:\n");
+                message.append("Rômulo Lopes - frutuoso.romulo@gmail.com\n");
+                message.append("Átila Camurça - camurca.home@gmail.com\n");
+                JOptionPane.showMessageDialog(null, message);
             }
         });
         menuHelp.add(menuItemAbout);
@@ -153,6 +159,7 @@ public class Main extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Locale.setDefault(new Locale("pt", "BR"));
+                createInstance();
             }
         });
         menuLanguage.add(menuItemPortugues);
@@ -162,6 +169,7 @@ public class Main extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Locale.setDefault(new Locale("en", "US"));
+                createInstance();
             }
         });
         menuLanguage.add(menuItemIngles);

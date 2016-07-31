@@ -1,0 +1,75 @@
+# Language en-US translations for sanusb-java-gui package.
+# Copyright (C) 2016 THE sanusb-java-gui'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the sanusb-java-gui package.
+# Automatically generated, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: sanusb-java-gui 1.0-SNAPSHOT\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-31 17:54-0300\n"
+"PO-Revision-Date: 2016-07-30 15:18-0300\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: en-US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: org/sanusb/view/Main.main([Ljava/lang/String;)V
+msgid ""
+"Directory '%s' not found. Please, check if the program SanUSB is installed "
+"correctly."
+msgstr ""
+
+#: org/sanusb/view/Main.init()V
+msgid "SanUSB Microcontroller Programming"
+msgstr ""
+
+#: org/sanusb/view/Janela.initComponents()V
+msgid "File"
+msgstr ""
+
+#: org/sanusb/view/Main.addMenu()V
+msgid "Exit"
+msgstr ""
+
+#: org/sanusb/view/Main.addMenu()V
+msgid "Help"
+msgstr ""
+
+#: org/sanusb/view/Main.addMenu()V
+msgid "Tutorial"
+msgstr ""
+
+#: org/sanusb/view/Main.addMenu()V
+msgid "Manager"
+msgstr ""
+
+#: org/sanusb/view/Main.addMenu()V
+msgid "About"
+msgstr ""
+
+#: org/sanusb/view/Main.addMenu()V
+msgid "Language"
+msgstr ""
+
+#: org/sanusb/view/Janela.initComponents()V
+msgid "Write"
+msgstr ""
+
+#: org/sanusb/view/Janela.initComponents()V
+msgid "Write and Reset"
+msgstr ""
+
+#: org/sanusb/view/Janela.initComponents()V
+msgid "Reset"
+msgstr ""
+
+#: org/sanusb/view/Janela.initComponents()V
+msgid "Open"
+msgstr ""
+
+#: org/sanusb/view/Janela.botaoGravarResetarActionPerformed(Ljava/awt/event/ActionEvent;)V
+msgid "No file selected"
+msgstr ""

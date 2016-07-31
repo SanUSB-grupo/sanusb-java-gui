@@ -20,6 +20,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import net.jhorstmann.i18n.I18N;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -58,7 +59,7 @@ public class Janela extends JPanel {
 
         setPreferredSize(new Dimension(380, 180));
 
-        botaoGravar.setText("Gravar");
+        botaoGravar.setText(I18N.tr("Write"));
         botaoGravar.setIcon(new ImageIcon(Icone.getIcone("gravar.png")));
         botaoGravar.addActionListener(new ActionListener() {
             @Override
@@ -67,7 +68,7 @@ public class Janela extends JPanel {
             }
         });
 
-        botaoGravarResetar.setText("Gravar e Resetar");
+        botaoGravarResetar.setText(I18N.tr("Write and Reset"));
         botaoGravarResetar.setIcon(new ImageIcon(Icone.getIcone("gravar.png")));
         botaoGravarResetar.addActionListener(new ActionListener() {
             @Override
@@ -76,7 +77,7 @@ public class Janela extends JPanel {
             }
         });
 
-        botaoResetar.setText("Resetar");
+        botaoResetar.setText(I18N.tr("Reset"));
         botaoResetar.setIcon(new ImageIcon(Icone.getIcone("resetar.png")));
         botaoResetar.addActionListener(new ActionListener() {
             @Override
@@ -85,7 +86,7 @@ public class Janela extends JPanel {
             }
         });
 
-        botaoAbrir.setText("Abrir");
+        botaoAbrir.setText(I18N.tr("Open"));
         botaoAbrir.setIcon(new ImageIcon(Icone.getIcone("abrir.png")));
         botaoAbrir.addActionListener(new ActionListener() {
             @Override
@@ -94,7 +95,7 @@ public class Janela extends JPanel {
             }
         });
 
-        labelArquivo.setText("Arquivo:");
+        labelArquivo.setText(I18N.tr("File") + ":");
 
         textDiretorio.setEditable(false);
 
@@ -175,7 +176,7 @@ public class Janela extends JPanel {
             String[] comando = {diretorioSanUsb + nomeAplicativo, "-w", getDiretorio()};
             startComando(comando);
         } else {
-            JOptionPane.showMessageDialog(null, "Nenhum Arquivo foi aberto");
+            JOptionPane.showMessageDialog(null, I18N.tr("No file selected"));
         }
     }
 
@@ -184,7 +185,7 @@ public class Janela extends JPanel {
             String[] comando = {diretorioSanUsb + nomeAplicativo, "-w", getDiretorio(), "-r"};
             startComando(comando);
         } else {
-            JOptionPane.showMessageDialog(null, "Nenhum Arquivo foi aberto");
+            JOptionPane.showMessageDialog(null, I18N.tr("No file selected"));
         }
     }
 
