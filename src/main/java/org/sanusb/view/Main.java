@@ -5,12 +5,14 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Locale;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import net.jhorstmann.i18n.I18N;
 
 /**
  *
@@ -31,15 +33,14 @@ public class Main extends JFrame {
 
     public static void main(String[] args) {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("GTK+".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (Exception e) {
-            System.out.println("[ERROR] Unsupported Look And Feel.");
-            e.printStackTrace();
+            System.out.println(I18N.tr("[ERROR] Unsupported Look And Feel."));
         }
         
         File sanUSBDir = new File(SANUSB_DIR);
@@ -64,10 +65,8 @@ public class Main extends JFrame {
 
     private void init() {
         this.add(janela);
-
         addMenu();
-
-        this.setTitle("SanUSB Microcontroller Programming");
+        this.setTitle(I18N.tr("SanUSB Microcontroller Programming"));
         this.setSize(largura, altura);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,11 +82,12 @@ public class Main extends JFrame {
         // barra do menu
         JMenuBar menuBar = new JMenuBar();
         // novo Menu
-        menuFile = new JMenu("File");//"File");
+        menuFile = new JMenu(I18N.tr("File"));
 
         // item do menu
-        menuItemExit = new JMenuItem("Exit");
+        menuItemExit = new JMenuItem(I18N.tr("Exit"));
         menuItemExit.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
@@ -95,9 +95,9 @@ public class Main extends JFrame {
 
         menuFile.add(menuItemExit);
 
-        JMenu menuHelp = new JMenu("Help");
+        JMenu menuHelp = new JMenu(I18N.tr("Help"));
 
-        JMenuItem menuItemTutorial = new JMenuItem("Tutorial");
+        JMenuItem menuItemTutorial = new JMenuItem(I18N.tr("Tutorial"));
         menuItemTutorial.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,7 +112,7 @@ public class Main extends JFrame {
         });
         menuHelp.add(menuItemTutorial);
 
-        JMenuItem menuItemGerenciador = new JMenuItem("Gerenciador");
+        JMenuItem menuItemGerenciador = new JMenuItem(I18N.tr("Manager"));
         menuItemGerenciador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -132,7 +132,7 @@ public class Main extends JFrame {
         });
         menuHelp.add(menuItemGerenciador);
 
-        JMenuItem menuItemAbout = new JMenuItem("About");
+        JMenuItem menuItemAbout = new JMenuItem(I18N.tr("About"));
         menuItemAbout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -146,28 +146,22 @@ public class Main extends JFrame {
         });
         menuHelp.add(menuItemAbout);
 
-        JMenu menuLanguage = new JMenu("Language");
+        JMenu menuLanguage = new JMenu(I18N.tr("Language"));
 
-        JMenuItem menuItemPortugues = new JMenuItem("Português");
+        JMenuItem menuItemPortugues = new JMenuItem("Português (Brasil)");
         menuItemPortugues.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // janela.setIdiomaBotoes(ControlIdioma.IDIOMA_PORTUGUES);
-                // menuFileIdiomas = controle.getIdiomaMenuFile(ControlIdioma.IDIOMA_PORTUGUES);
-                // menuFile.setText(menuFileIdiomas[0]);
-                // menuItemExit.setText(menuFileIdiomas[1]);
+                Locale.setDefault(new Locale("pt", "BR"));
             }
         });
         menuLanguage.add(menuItemPortugues);
 
-        JMenuItem menuItemIngles = new JMenuItem("Inglês");
+        JMenuItem menuItemIngles = new JMenuItem("English");
         menuItemIngles.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // janela.setIdiomaBotoes(ControlIdioma.IDIOMA_INGLES);
-                // menuFileIdiomas = controle.getIdiomaMenuFile(ControlIdioma.IDIOMA_INGLES);
-                // menuFile.setText(menuFileIdiomas[0]);
-                // menuItemExit.setText(menuFileIdiomas[1]);
+                Locale.setDefault(new Locale("en", "US"));
             }
         });
         menuLanguage.add(menuItemIngles);
@@ -176,10 +170,7 @@ public class Main extends JFrame {
         menuItemEspanhol.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // janela.setIdiomaBotoes(ControlIdioma.IDIOMA_ESPANHOL);
-                // menuFileIdiomas = controle.getIdiomaMenuFile(ControlIdioma.IDIOMA_ESPANHOL);
-                // menuFile.setText(menuFileIdiomas[0]);
-                // menuItemExit.setText(menuFileIdiomas[1]);
+                Locale.setDefault(new Locale("es", "ES"));
             }
         });
         menuLanguage.add(menuItemEspanhol);
